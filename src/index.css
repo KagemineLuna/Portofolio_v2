@@ -6,3 +6,64 @@
 html {
   scroll-behavior: smooth;
 }
+
+@layer utilities {
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  .animate-twinkle {
+    animation-name: twinkle;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes drift {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(20px);
+    }
+  }
+
+  .animate-drift {
+    animation-name: drift;
+    animation-direction: alternate;
+  }
+
+  @keyframes shoot {
+    0% {
+      transform: translateX(-100px) translateY(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(120vw) translateY(200px);
+      opacity: 0;
+    }
+  }
+
+  .shooting-star {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0),
+      rgba(255,255,255,0.8),
+      rgba(255,255,255,0)
+    );
+    position: absolute;
+    left: -150px;
+    animation: shoot 1.2s ease-out infinite;
+  }
+}
