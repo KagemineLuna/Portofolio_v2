@@ -8,6 +8,8 @@ import {
   Code,
   ExternalLink,
 } from 'lucide-react';
+import Stars from './Stars';
+import useIsNight from './useIsNight';
 
 function App() {
   // Initial theme: localStorage → system preference
@@ -17,6 +19,14 @@ function App() {
     }
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
+
+const isNight = useIsNight();
+  const starsEnabled = darkMode && isNight;
+
+  return (
+    <>
+      <Stars enabled={starsEnabled} />
+      <div className="relative z-10 min-h-screen bg-amoled-white dark:bg-amoled-black">
 
   // Sync theme to <html> and localStorage
   useEffect(() => {
