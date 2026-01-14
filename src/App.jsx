@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 function App() {
-  // Initial theme: localStorage → system preference → dark (taste)
+  // Initial theme: localStorage → system preference
   const [darkMode, setDarkMode] = useState(() => {
     if (localStorage.theme) {
       return localStorage.theme === 'dark';
@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className="min-h-screen transition-colors duration-300 ease-in-out bg-amoled-white text-amoled-black dark:bg-amoled-black dark:text-amoled-white font-sans selection:bg-neon-purple selection:text-white">
-      
+
       {/* Navigation */}
       <nav className="fixed w-full z-50 backdrop-blur-md bg-white/70 dark:bg-black/70 border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -69,9 +69,9 @@ function App() {
           </p>
 
           <div className="flex gap-4">
-            <SocialBtn icon={<Github className="w-5 h-5" />} link="#" />
-            <SocialBtn icon={<Linkedin className="w-5 h-5" />} link="#" />
-            <SocialBtn icon={<Mail className="w-5 h-5" />} link="#" />
+            <SocialBtn icon={<Github className="w-5 h-5" />} link="https://github.com/yourname" />
+            <SocialBtn icon={<Linkedin className="w-5 h-5" />} link="https://linkedin.com/in/yourname" />
+            <SocialBtn icon={<Mail className="w-5 h-5" />} link="mailto:you@email.com" />
           </div>
         </section>
 
@@ -87,11 +87,14 @@ function App() {
               title="Vite Portfolio"
               desc="A high-performance portfolio built with React and Tailwind. Features true Amoled dark mode."
               tags={['React', 'Vite', 'Tailwind']}
+              link="https://your-portfolio-url.com"
             />
+
             <ProjectCard
               title="Crypto Dashboard"
               desc="Real-time data visualization for crypto markets. Don’t ask me how much money I lost."
               tags={['API', 'Chart.js', 'Axios']}
+              link="https://github.com/yourname/crypto-dashboard"
             />
           </div>
         </section>
@@ -110,34 +113,57 @@ function App() {
 const SocialBtn = ({ icon, link }) => (
   <a
     href={link}
-    className="p-3 rounded-lg border border-gray-300 dark:border-gray-800 hover:border-neon-purple dark:hover:border-neon-purple hover:text-neon-purple transition-all"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="p-3 rounded-lg border border-gray-300 dark:border-gray-800
+               hover:border-neon-purple dark:hover:border-neon-purple
+               hover:text-neon-purple transition-all"
   >
     {icon}
   </a>
 );
 
-const ProjectCard = ({ title, desc, tags }) => (
-  <div className="group p-6 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-neon-purple dark:hover:border-neon-purple transition-all">
-    <div className="flex justify-between items-start mb-4">
-      <h4 className="text-xl font-bold group-hover:text-neon-purple transition-colors">
-        {title}
-      </h4>
-      <ExternalLink className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
-    </div>
+const ProjectCard = ({ title, desc, tags, link }) => {
+  const Wrapper = link ? 'a' : 'div';
 
-    <p className="text-gray-600 dark:text-gray-400 mb-6">{desc}</p>
+  return (
+    <Wrapper
+      href={link}
+      target={link ? '_blank' : undefined}
+      rel={link ? 'noopener noreferrer' : undefined}
+      aria-label={link ? `Open project ${title}` : undefined}
+      className="group block cursor-pointer p-6 rounded-2xl
+                 border border-gray-200 dark:border-gray-800
+                 hover:border-neon-purple dark:hover:border-neon-purple
+                 transition-all focus:outline-none focus:ring-2 focus:ring-neon-purple"
+    >
+      <div className="flex justify-between items-start mb-4">
+        <h4 className="text-xl font-bold group-hover:text-neon-purple transition-colors">
+          {title}
+        </h4>
 
-    <div className="flex gap-2 flex-wrap">
-      {tags.map((tag) => (
-        <span
-          key={tag}
-          className="text-xs font-mono py-1 px-3 rounded-full bg-gray-100 dark:bg-gray-900 text-neon-purple"
-        >
-          {tag}
-        </span>
-      ))}
-    </div>
-  </div>
-);
+        {link && (
+          <ExternalLink className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
+        )}
+      </div>
+
+      <p className="text-gray-600 dark:text-gray-400 mb-6">
+        {desc}
+      </p>
+
+      <div className="flex gap-2 flex-wrap">
+        {tags.map((tag) => (
+          <span
+            key={tag}
+            className="text-xs font-mono py-1 px-3 rounded-full
+                       bg-gray-100 dark:bg-gray-900 text-neon-purple"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+    </Wrapper>
+  );
+};
 
 export default App;
