@@ -37,10 +37,10 @@ function App() {
                       bg-amoled-white text-amoled-black
                       dark:bg-amoled-black dark:text-amoled-white
 
- <Stars enabled={starsEnabled} />
-
                       font-sans selection:bg-neon-purple selection:text-white">
 
+<Stars enabled={starsEnabled} />
+.
         {/* Navigation */}
         <nav className="fixed w-full z-50 backdrop-blur-md bg-white/70 dark:bg-black/70 border-b border-gray-200 dark:border-gray-800">
           <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
