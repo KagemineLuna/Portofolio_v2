@@ -32,7 +32,7 @@ export default function Stars({ enabled }) {
   if (!enabled) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-0">
       {/* Static + drifting stars */}
       {stars.map((star) => (
         <span
