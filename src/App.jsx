@@ -32,11 +32,13 @@ function App() {
 
   return (
     <>
-      <Stars enabled={starsEnabled} />
-
+     
       <div className="relative z-10 min-h-screen transition-colors duration-300 ease-in-out
                       bg-amoled-white text-amoled-black
                       dark:bg-amoled-black dark:text-amoled-white
+
+ <Stars enabled={starsEnabled} />
+
                       font-sans selection:bg-neon-purple selection:text-white">
 
         {/* Navigation */}
