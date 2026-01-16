@@ -1,20 +1,12 @@
 import { useEffect, useState } from 'react';
 
 export default function useIsNight() {
-  const getIsNight = () => {
-    const hour = new Date().getHours();
-    return hour >= 18 || hour < 6;
-  };
-
-  const [isNight, setIsNight] = useState(getIsNight);
+  const [isNight, setIsNight] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsNight(getIsNight());
-    }, 60_000);
-
-    return () => clearInterval(interval);
+    const hour = new Date().getHours();
+    setIsNight(hour >= 19 || hour < 6);
   }, []);
 
   return isNight;
-      }
+}
