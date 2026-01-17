@@ -14,7 +14,6 @@ export default function Stars({ enabled }) {
         opacity: Math.random() * 0.5 + 0.3,
         delay: Math.random() * 5,
         duration: Math.random() * 6 + 6,
-        drift: Math.random() * 20 - 10,
       })),
     []
   );
@@ -29,12 +28,12 @@ export default function Stars({ enabled }) {
     []
   );
 
-  if (!enabled) return null;
-
   return (
-    <div className="fixed inset-0 pointer-events-none z-0">
-      {/* Static + drifting stars */}
-      {stars.map((star) => (
+    <div
+      className={`fixed inset-0 pointer-events-none z-0 transition-opacity duration-500
+                  ${enabled ? 'opacity-100' : 'opacity-0'}`}
+    >
+      {stars.map(star => (
         <span
           key={star.id}
           className="absolute rounded-full bg-white animate-twinkle animate-drift"
@@ -46,13 +45,11 @@ export default function Stars({ enabled }) {
             opacity: star.opacity,
             animationDelay: `${star.delay}s`,
             animationDuration: `${star.duration}s`,
-            transform: `translateX(${star.drift}px)`,
           }}
         />
       ))}
 
-      {/* Shooting stars */}
-      {shootingStars.map((star) => (
+      {shootingStars.map(star => (
         <span
           key={star.id}
           className="absolute shooting-star"
@@ -64,4 +61,4 @@ export default function Stars({ enabled }) {
       ))}
     </div>
   );
-      }
+}
