@@ -53,12 +53,13 @@ export default function Stars({ enabled }) {
 
       {/* Shooting stars */}
       {shootingStars.map((star) => (
-        <span
-          key={star.id}
-          className="absolute shooting-star"
-          style={{
-            top: `${star.top}%`,
-            animationDelay: `${star.delay}s`,
+  <span
+    key={star.id}
+    className="absolute h-[1px] w-[120px] bg-gradient-to-r from-transparent via-white/80 to-white rounded-full opacity-0 animate-shooting-star"
+    style={{
+      top: `${star.top}%`,
+      left: `${star.left}%`, // Add a left property to randomize horizontal start
+      animationDelay: `${star.delay}s`,
           }}
         />
       ))}
