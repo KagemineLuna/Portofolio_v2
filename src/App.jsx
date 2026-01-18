@@ -23,7 +23,6 @@ function App() {
   const isNight = useIsNight();
   const starsEnabled = darkMode && isNight;
 
-  // ✅ Hooks belong here
   useEffect(() => {
     const root = document.documentElement;
     root.classList.toggle('dark', darkMode);
@@ -42,8 +41,8 @@ function App() {
 <Stars enabled={starsEnabled} />
 .
         {/* Navigation */}
-        <nav className="fixed w-full z-50 backdrop-blur-md bg-white/70 dark:bg-black/70 border-b border-gray-200 dark:border-gray-800">
-          <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-black/70 border-b border-gray-200 dark:border-gray-800">
+          <div className="max-w-7xl mx-auto px-6 md:px-8 py-4 flex justify-between items-center">
             <h1 className="text-2xl font-bold bg-gradient-to-r from-neon-purple to-blue-500 bg-clip-text text-transparent">
               DEV.
             </h1>
