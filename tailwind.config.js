@@ -21,7 +21,7 @@ export default {
       // --- Animations ---
       animation: {
         'twinkle': 'twinkle 3s ease-in-out infinite',
-        'shooting-star': 'shooting-star 5s linear infinite',
+        'shooting-star': 'shooting-star 2s linear infinite',
       },
       // --- Keyframes ---
       keyframes: {
@@ -30,8 +30,18 @@ export default {
           '50%': { opacity: '1', transform: 'scale(1.2)' },
         },
         'shooting-star': {
-          '0%': { transform: 'translateX(0) translateY(0) rotate(-45deg)', opacity: '1' },
-          '100%': { transform: 'translateX(500px) translateY(500px) rotate(-45deg)', opacity: '0' },
+          '0%': { 
+            transform: 'rotate(-45deg) translateX(0)', 
+            opacity: '1',
+            width: '0px' 
+          },
+          '70%': { 
+            opacity: '1' 
+          },
+          '100%': { 
+            transform: 'rotate(-45deg) translateX(-1000px)', 
+            opacity: '0',
+            width: '150px'},
         },
       },
     },
